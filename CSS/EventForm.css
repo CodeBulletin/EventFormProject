@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&family=Nova+Square&display=swap');
+
+body {
+    padding: 25px;
+    background-color: #F0F0F0;
+}
+
+.form {
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    font-size: 16px;
+}
+
+.form * {
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+
+.form__item {
+    background-color: #FFFFFF;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 25px;
+    
+    min-width: 300px;
+    max-width: 750px;
+    
+    border-style: solid;
+    border-width: thin;
+    border-color: #DADCE0;
+    border-radius: 10px;
+}
+
+.form__title {
+    font-size: 2em;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+.form__desc {
+    font-size: 1em;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+.form__top {
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-Right-radius: 10px;
+    background-color: #9E9E9E;
+    border-bottom: #00000000;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+
+.form__head {
+    border-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-Right-radius: 10px;
+    margin-top: 0px;
+    border-top: #00000000;
+}
+
+.form__label {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.form__input {
+    -webkit-appearance: none; /* Chrome, Safari, Opera */
+    
+    width: 100%;
+    max-width: 700px;
+    min-height: 1.6em;
+    
+    padding: 5px;
+    padding-left: 10px;
+
+    font-size: 1.1em;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    
+    outline: none;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+
+    background: #f9f9f9;
+    
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form__input:focus {
+    background: #fefefe;
+}
+
+.form__input::placeholder {
+    color: #bbbbbb;
+}
+
+.form__input--error {
+    border-color: #d50000;
+}
+
+.form__input--error > .form__input {
+    color: #d50000;
+    background: #fff9f9;
+    border-color: #d50000;
+}
+
+.form__input--error > .form__input::placeholder {
+    color: #ffbfbf;
+}
+
+.form__error {
+    padding-top: 10px;
+    color: #d50000;
+    font-size: 0.9em;
+    display: none;
+    visibility: collapse;
+}
+
+.form__input--error > .form__error {
+    visibility: visible;
+    display: inline;
+}
+
+.form__btn {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 600;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.submit {
+    color: #ffffff;
+    background: #777777;
+    border: none;
+    justify-self: left;
+}
+
+.submit:hover {
+    background: #828282;
+}
+
+.submit:active {
+    background: #999999;
+}
+
+.reset {
+    color: #909090;
+    background: #f0f0f0;
+    border: none;
+    justify-self: right;
+}
+
+.reset:hover {
+    background: #eaecf1;
+}
+
+.reset:active {
+    background: #caccd1;
+}
+
+.EndText {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
+    font-family: 'Nova Square', sans-serif;
+    font-size: 1.4em;
+    color: #333333F0;
+}
+
+.form__end {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 300px;
+    max-width: 750px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.req {
+    color: #d50000;
+}
+
+.form__radio {
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+}
+
+.form__checkbox {
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+}
+
+.form__radio__lable {
+    font-size: 1.1em;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.form__radio__input {
+    max-width: 650px;
+    min-height: 1.3em;
+
+    margin-left: 5px;
+    padding: 1px;
+    padding-left: 10px;
+
+    font-size: 1.1em;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    
+    outline: none;
+    border: 5px solid #dddddd;
+
+    border-top: #00000000;
+    border-left: #00000000;
+    border-right: #00000000;
+
+    background: #ffffff;
+    
+    transition: all 0.5s ease-out;
+}
+
+.form__radio__input:focus {
+    border-bottom: 5px solid #A0F0A0;
+}
+
+.file__in::-webkit-file-upload-button {
+    display: none;
+}
+
+.file__in::file-selector-button {
+    display: none;
+}
+
+.file__in:hover {
+    cursor: pointer;
+}
+
+.form__backend__error {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #d5000020;
+}
+
+.form__backend__label {
+    color: #d50000;
+    justify-self: center;
+}
