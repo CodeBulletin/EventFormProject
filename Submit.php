@@ -10,8 +10,8 @@
     $datetime = new DateTime($_POST["Datetime"]);
     $days = $_POST["Days"];
     $days_text = $_POST["ODays"];
-    $aegis_iqac = $_POST["IQAC"];
-    $aegis_dbtstar = $_POST["DBTStar"];
+    $aegis_iqac = (!empty($_POST["IQAC"]) ? $_POST["IQAC"] : "No");
+    $aegis_dbtstar = (!empty($_POST["DBTStar"]) ? $_POST["DBTStar"] : "No");
     $youtube = $_POST["Youtube"];
     $host = $_POST["Host"];
     $poster = $_POST["File"];
