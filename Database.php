@@ -9,4 +9,6 @@
     if ($conn->connect_error) { // Checking if the connection was successful 
         die("Connection failed: " . $conn->connect_error); // post error if it is not
     }
+
+    $TableName = "Events"; // Table Name;
 ?>

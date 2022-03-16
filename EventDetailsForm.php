@@ -1,7 +1,7 @@
 <?php 
-    $hasError = isset($_GET['Message']);
+    $hasError = isset($_GET['message']);
     if($hasError) {
-        $message = $_GET['Message'];
+        $message = $_GET['message'];
     }
 ?>
 
@@ -19,7 +19,7 @@
     </head>
 
     <body>
-        <form class="form" action="" method="GET" id='form'>
+        <form class="form" action="./Submit.php" method="POST" id='form'>
             <!-- Head -->
             <div class = "form__item form__top"></div>
             <div class="form__item form__head">
@@ -153,7 +153,7 @@
 
             <div class="form__item" id="FILE">
                 <label for="Host" class="form__label"> Poster: <span class = "req"> * </span> </label>
-                <input type="file" class="file__in form__input" name="File" id="File" required>
+                <input type="file" class="file__in form__input" name="File" id="File" placeholder="Click here to choose file" required>
                 <label for="File" class="form__error"> Enter Valid Image(.png, .jpg, .jpeg, .bmp) or PDF file </label>
             </div>
 

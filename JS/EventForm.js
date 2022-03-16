@@ -37,8 +37,13 @@ function validateNameExtended(name) {
     return Regex.test(name);
 }
 
+function validateNameExtendedSlash(name) {
+    var Regex = /^[a-zA-Z0-9\,\.\s\/\\]+$/;
+    return Regex.test(name);
+}
+
 function validateNameExtendedPlus(name) {
-    var Regex = /^[a-zA-Z0-9\,\@\.\+\s]+$/;
+    var Regex = /^[a-zA-Z0-9\,\.\+\s]+$/;
     return Regex.test(name);
 }
 
@@ -156,7 +161,7 @@ OType.addEventListener('input', (event) => {
     }
 
     var str = OType.value;
-    var value = validateNameExtended(str);
+    var value = validateNameExtendedSlash(str);
     if (str.length > 0) {
         if (value == true) {
             TYPE.classList.remove('form__input--error');
