@@ -118,7 +118,7 @@
     //IF EVERY THING GOES CORRECT(Hopefully)
     $host = explode(",", $host);
     $HostName = $host[0];
-    $HostContactNo = $host[1];
+    $HostContactNo = (!empty($host[1]) ? $host[1] : "None");
 
     $sql = "INSERT INTO $TableName VALUES (DEFAULT, '$topic', '$event_type', '$dt', '$days', '$is_online', '$department', '$guests', '$HostName', '$HostContactNo', '$faculty', '$aegis', '$youtube', '$poster')";
     mysqli_query($conn, $sql);
