@@ -17,56 +17,47 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-        <!-- Style -->
-        <link rel="stylesheet" href="./CSS/Event.css">
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="./CSS/Events.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand fontB" href="./index.php">Deshbandhu College</a>
-                <!-- <form class="form-dark" method="GET" action="./Events.php">
-                    <input type="text" placeholder="Search" class="form-control dark font_style" id="search" name="search">
-                </form> -->
-                <div class="ms-auto" id="LINKS">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link fontA" aria-current="page" href="./EventDetailsForm.php">Host An Event?</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="EventList">
-            <?php while($row = $res->fetch_assoc()) { ?>
-            <div class="EventDiv fontA fontWhite">
-                <span class="display-3 fontB"><?php echo $row["Topic"] ?></span>
-                <span class="display-4">
-                    <?php 
-                        $days = (int)$row['NumDays'] - 1;
-                        $date = new DateTime($row["DateTime"]);
-                        if($days == 1) {
-                            echo $date->format("Y-m-d");
-                        }
-                        else {
-                            $start = clone $date;
-                            $end = (clone $date)->modify("+$days day");
-                            echo $start->format("Y-m-d") . " to " . $end->format("Y-m-d");
-                        }
-                        echo " at " . $date->format("h:i A");
-                    ?>
-                </span>
-                <span class="display-5"><?php echo "Guest(s): " . $row['Guests']; ?></span>
-                <span class="h2">Department/Organization: <?php echo $row['Department'] ?></span>
-                <span class="h2">Host: <?php echo $row['Host'] ?></span>
-                <span class="h2">Faculty(s): <?php echo $row['Faculty'] ?></span>
-                <div class="Grid4">
-                    <span class="h5">Mode: <?php echo $row['Mode']?></span>
-                    <span class="h5">Type of event: <?php echo $row['Type']?></span>
-                    <span class="h5">Youtube Live: <?php echo $row['OnYoutube']?></span>
-                    <span class="h5">Aegis: <?php echo $row['Aegis']?></span>
-                </div>
-            </div>
-            <?php } ?>
+        <div>
+            <table>
+                <tr>
+                    <th>EventID</th>
+                    <th>Topic</th>
+                    <th>Event Type</th>
+                    <th>Date and Time</th>
+                    <th>Number of days</th>
+                    <th>Mode</th>
+                    <th>Department</th>
+                    <th>Guests</th>
+                    <th>Host</th>
+                    <th>Host Contact Number</th>
+                    <th>Faculty</th>
+                    <th>Aegis</th>
+                    <th>OnYoutube</th>
+                    <th>Poster</th>
+                </tr>
+                <?php while($row = $res->fetch_assoc()) { ?>
+                    <tr>
+                        <td><?php echo $row["EventID"] ?></td>
+                        <td><?php echo $row["Topic"] ?></td>
+                        <td><?php echo $row["Type"] ?></td>
+                        <td><?php echo $row["DateTime"] ?></td>
+                        <td><?php echo $row["NumDays"] ?></td>
+                        <td><?php echo $row["Mode"] ?></td>
+                        <td><?php echo $row["Department"] ?></td>
+                        <td><?php echo $row["Guests"] ?></td>
+                        <td><?php echo $row["Host"] ?></td>
+                        <td><?php echo $row["HostContactNo"] ?></td>
+                        <td><?php echo $row["Faculty"] ?></td>
+                        <td><?php echo $row["Aegis"] ?></td>
+                        <td><?php echo $row["OnYoutube"] ?></td>
+                        <td><?php echo $row["Poster"] ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
         </div>
     </body>
 </html>

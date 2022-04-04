@@ -149,7 +149,7 @@
                     You have sumbitted the form correctly we will contact you shortly, <br>
                     your form id: <?php echo $EventID ?> <br>
 
-                    <a href="./index.php">Home Page</a>
+                    <a href="./index.php">Fill another form?</a>
                 </div>
             </div>
             <!-- Footer(ish) -->
