@@ -9,6 +9,8 @@ td, th {
     padding: 8px;
     text-align: center;
     font-size: 0.85em;
+    max-width: 250px;
+    word-wrap: break-word;
 }
 
 th {

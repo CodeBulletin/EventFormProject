@@ -12,9 +12,10 @@
         <meta name="viewport" content="width=device-width">
         <title>Event Details</title>
 
-        <!-- Style and JavaScript -->
+        <!-- Style, JavaScript and Icon-->
         <link rel="stylesheet" href="CSS/EventForm.css">
         <script defer src="JS/EventForm.js"></script>
+        <link rel="shortcut icon" href="./Icons/FormIcon.png" type="image/x-icon">
 
     </head>
 
