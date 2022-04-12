@@ -1,8 +1,15 @@
 <?php
     require "./Database.php";
 
-    $sql = "SELECT * FROM $TableName ORDER BY `DateTime`";
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : "DateTime";
+    $By = isset($_GET['order']) ? $_GET['order'] : "ASC";
+    $By = $By == "ASC" || $By == "DESC" ? $By : "ASC";
+
+    $sql = "SELECT * FROM $TableName ORDER BY `$sort` $By";
     $res = mysqli_query($conn, $sql);
+
+    $sql = "DESCRIBE `$TableName`";
+    $cols = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -21,20 +28,16 @@
         <div>
             <table>
                 <tr>
-                    <th>EventID</th>
-                    <th>Topic</th>
-                    <th>Event Type</th>
-                    <th>Date and Time</th>
-                    <th>Number of days</th>
-                    <th>Mode</th>
-                    <th>Department</th>
-                    <th>Guests</th>
-                    <th>Host</th>
-                    <th>Host Contact Number</th>
-                    <th>Faculty</th>
-                    <th>Aegis</th>
-                    <th>OnYoutube</th>
-                    <th>Poster</th>
+                    <?php while($col = $cols->fetch_assoc()) { ?>
+                        <th>
+                            <?php
+                                $a = $col['Field'] == $sort ? ($By == "ASC" ? "DESC" : "ASC") : "ASC";
+                            ?>
+                            <a href=<?php echo "\"?sort=". $col['Field'] . "&order=" . $a . "\""; ?>>
+                                <?php echo $col['Field']; ?>
+                            </a>
+                        </th>
+                    <?php } ?>
                 </tr>
                 <?php while($row = $res->fetch_assoc()) { ?>
                     <tr>
