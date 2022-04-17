@@ -41,20 +41,13 @@
                 </tr>
                 <?php while($row = $res->fetch_assoc()) { ?>
                     <tr>
-                        <td><?php echo $row["EventID"] ?></td>
-                        <td><?php echo $row["Topic"] ?></td>
-                        <td><?php echo $row["Type"] ?></td>
-                        <td><?php echo $row["DateTime"] ?></td>
-                        <td><?php echo $row["NumDays"] ?></td>
-                        <td><?php echo $row["Mode"] ?></td>
-                        <td><?php echo $row["Department"] ?></td>
-                        <td><?php echo $row["Guests"] ?></td>
-                        <td><?php echo $row["Host"] ?></td>
-                        <td><?php echo $row["HostContactNo"] ?></td>
-                        <td><?php echo $row["Faculty"] ?></td>
-                        <td><?php echo $row["Aegis"] ?></td>
-                        <td><?php echo $row["OnYoutube"] ?></td>
-                        <td><?php echo $row["Poster"] ?></td>
+                        <?php 
+                        $cols->data_seek(0);
+                        while($col = $cols->fetch_assoc()) { ?>
+                            <td>
+                                <?php echo $row[$col['Field']]; ?>
+                            </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </table>
