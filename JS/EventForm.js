@@ -12,6 +12,9 @@ const TOPIC = document.getElementById('TOPIC');
 const Guest = document.getElementById('Guest');
 const GUEST = document.getElementById('GUEST');
 
+const Part = document.getElementById('Participants');
+const PART = document.getElementById('PARTICIPANT');
+
 const OType = document.getElementById('OType');
 const TYPE = document.getElementById('TYPE');
 
@@ -21,11 +24,12 @@ const DATETIME = document.getElementById('DATETIME');
 const ODays = document.getElementById('ODays');
 const DAYS = document.getElementById('DAYS');
 
-const Host = document.getElementById('Host');
-const HOST = document.getElementById('HOST');
-
 const OFile = document.getElementById('File');
 const FILE = document.getElementById('FILE');
+
+const About = document.getElementById('About');
+const ABOUT = document.getElementById('ABOUT');
+var ABOUTTXT = document.getElementById('About_Limit');
 
 function validateName(name) {
     var Regex = /^[a-zA-Z\.\,\s]+$/;
@@ -65,6 +69,13 @@ function PosterFileValidator(fname) {
     return false;
 }
 
+function countWords(s){
+    s = s.replace(/(^\s*)|(\s*$)/gi,"");//exclude  start and end white-space
+    s = s.replace(/[ ]{2,}/gi," ");//2 or more space to 1
+    s = s.replace(/\n /,"\n"); // exclude newline with a start spacing
+    return s.split(' ').filter(function(str){return str!="";}).length;
+}
+
 function handleRadio(myRadio, div, input) {
     var val = myRadio.value;
     var DIV = document.getElementById(div);
@@ -95,7 +106,7 @@ OrgName.addEventListener('input', (event) => {
     var str = OrgName.value;
     var value = validateName(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             ORGNAME.classList.remove('form__input--error');
         }
         else {
@@ -111,7 +122,7 @@ OrgFacName.addEventListener('input', (event) => {
     var str = OrgFacName.value;
     var value = validateName(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             ORGFACNAME.classList.remove('form__input--error');
         }
         else {
@@ -127,7 +138,7 @@ Topic.addEventListener('input', (event) => {
     var str = Topic.value;
     var value = validateNameExtended(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             TOPIC.classList.remove('form__input--error');
         }
         else {
@@ -141,9 +152,9 @@ Topic.addEventListener('input', (event) => {
 
 Guest.addEventListener('input', (event) => {
     var str = Guest.value;
-    var value = validateName(str);
+    var value = parseInt(str) >= 0;
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             GUEST.classList.remove('form__input--error');
         }
         else {
@@ -155,15 +166,31 @@ Guest.addEventListener('input', (event) => {
     }
 })
 
+Part.addEventListener('input', (event) => {
+    var str = Part.value;
+    var value = parseInt(str) >= 0;
+    if (str.length > 0) {
+        if (value === true) {
+            PART.classList.remove('form__input--error');
+        }
+        else {
+            PART.classList.add('form__input--error');
+        }
+    } 
+    else {
+        PART.classList.remove('form__input--error');
+    }
+})
+
 OType.addEventListener('input', (event) => {
     if(!OType.required) {
-        document.getElementById('T4').checked = true;
+        document.getElementById('T6').checked = true;
     }
 
     var str = OType.value;
     var value = validateNameExtendedSlash(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             TYPE.classList.remove('form__input--error');
         }
         else {
@@ -180,7 +207,7 @@ Datetime.addEventListener('input', (event) => {
     console.log(Datetime.value);
     var value = validateDateTime(str);
     if (Datetime.value.length > 0) {
-        if (value == true) {
+        if (value === true) {
             DATETIME.classList.remove('form__input--error');
         }
         else {
@@ -199,7 +226,7 @@ ODays.addEventListener('input', (event) => {
     var str = ODays.value;
     var value = validateNum(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             DAYS.classList.remove('form__input--error');
         }
         else {
@@ -211,27 +238,11 @@ ODays.addEventListener('input', (event) => {
     }
 })
 
-Host.addEventListener('input', (event) => {
-    var str = Host.value;
-    var value = validateNameExtendedPlus(str);
-    if (str.length > 0) {
-        if (value == true) {
-            HOST.classList.remove('form__input--error');
-        }
-        else {
-            HOST.classList.add('form__input--error');
-        }
-    } 
-    else {
-        HOST.classList.remove('form__input--error');
-    }
-})
-
 OFile.addEventListener('input', (event) => {
     var str = OFile.value;
     var value = PosterFileValidator(str);
     if (str.length > 0) {
-        if (value == true) {
+        if (value === true) {
             FILE.classList.remove('form__input--error');
         }
         else {
@@ -240,6 +251,25 @@ OFile.addEventListener('input', (event) => {
     } 
     else {
         FILE.classList.remove('form__input--error');
+    }
+})
+
+About.addEventListener('input', (event) => {
+    var str = About.value;
+    var numWords = countWords(str);
+    var value = numWords >= 50 && numWords <= 100;
+    var numLeft = 100 - numWords;
+    ABOUTTXT.innerHTML = "Words Left: " + numLeft.toString()
+    if (str.length > 0) {
+        if (value === true) {
+            ABOUT.classList.remove('form__input--error');
+        }
+        else {
+            ABOUT.classList.add('form__input--error');
+        }
+    } 
+    else {
+        ABOUT.classList.remove('form__input--error');
     }
 })
 
@@ -253,7 +283,8 @@ form.addEventListener('submit', (event) => {
         DATETIME.classList.contains('form__input--error') ||
         DAYS.classList.contains('form__input--error') ||
         HOST.classList.contains('form__input--error') ||
-        FILE.classList.contains('form__input--error')
+        FILE.classList.contains('form__input--error') ||
+        ABOUT.classList.contains('form__input--error')
     );
 
     if(error) {

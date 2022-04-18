@@ -5,7 +5,7 @@
     $By = isset($_GET['order']) ? $_GET['order'] : "ASC";
     $By = $By == "ASC" || $By == "DESC" ? $By : "ASC";
 
-    $sql = "SELECT * FROM $TableName ORDER BY `$sort` $By";
+    $sql = "SELECT `EventID`, `Topic`, `Type`, `AcademicYear`, `DateTime`, `NumDays`, `Mode`, `Department`, `Guests`, `Participants`, `Faculty`, `Aegis`, `Poster` FROM $TableName ORDER BY `$sort` $By";
     $res = mysqli_query($conn, $sql);
 
     $sql = "DESCRIBE `$TableName`";
@@ -28,26 +28,28 @@
         <div>
             <table>
                 <tr>
-                    <?php while($col = $cols->fetch_assoc()) { ?>
-                        <th>
-                            <?php
-                                $a = $col['Field'] == $sort ? ($By == "ASC" ? "DESC" : "ASC") : "ASC";
-                            ?>
-                            <a href=<?php echo "\"?sort=". $col['Field'] . "&order=" . $a . "\""; ?>>
-                                <?php echo $col['Field']; ?>
-                            </a>
-                        </th>
-                    <?php } ?>
+                    <?php while($col = $cols->fetch_assoc()) {
+                            if ($col['Field'] != 'About') { ?>
+                                <th>
+                                    <?php
+                                        $a = $col['Field'] == $sort ? ($By == "ASC" ? "DESC" : "ASC") : "ASC";
+                                    ?>
+                                    <a href=<?php echo "\"?sort=". $col['Field'] . "&order=" . $a . "\""; ?>>
+                                        <?php echo $col['Field']; ?>
+                                    </a>
+                                </th>
+                    <?php }} ?>
                 </tr>
                 <?php while($row = $res->fetch_assoc()) { ?>
                     <tr>
                         <?php 
-                        $cols->data_seek(0);
-                        while($col = $cols->fetch_assoc()) { ?>
-                            <td>
-                                <?php echo $row[$col['Field']]; ?>
-                            </td>
-                        <?php } ?>
+                            $cols->data_seek(0);
+                            while($col = $cols->fetch_assoc()) {
+                                if ($col['Field'] != 'About') { ?>
+                                    <td>
+                                        <?php echo $row[$col['Field']]; ?>
+                                    </td>
+                        <?php }} ?>
                     </tr>
                 <?php } ?>
             </table>

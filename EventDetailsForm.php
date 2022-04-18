@@ -20,7 +20,7 @@
     </head>
 
     <body>
-        <form class="form" action="./Submit.php" method="POST" id='form'>
+        <form class="form" action="./Submit.php" method="POST" id='form' enctype="multipart/form-data">
             <!-- Head -->
             <div class = "form__item form__top"></div>
             <div class="form__item form__head">
@@ -29,9 +29,6 @@
                     Instructions: 
                     <ol>
                         <li>All of the fields having <span class = "req"> * </span> are neceassery. <br></li>
-                        <li>Link will be shared with the Organizing Faculty / Convenor / Cordinator of the Event within 24 hrs of receipt of request. <br></li>
-                        <li>It is the responsibility of Organizing Team for handling of Offline and Online event. <br></li>
-                        <li>Youtube Live will be done by the College, 5 mins before the start of the event. <br></li>
                     </ol>
                 </div>
 
@@ -47,27 +44,32 @@
 
             <!-- details -->
             <div class="form__item" id="ORGNAME">
-                <label for="OrgName" class="form__label"> Name of the organizing department / society / committee / cell: <span class = "req"> * </span> </label>
+                <label for="OrgName" class="form__label"> Name of the Organizing Department / Society / Committee / Cell: <span class = "req"> * </span> </label>
                 <input type="text" placeholder="Your Answer" name="OrgName" id="OrgName" class="form__input" required>
                 <label for="OrgName" class="form__error"> Name should only contain a-z, A-Z, . , ',' and space </label>
             </div>
 
             <div class="form__item" id="ORGFACNAME">
-                <label for="OrgFacName" class="form__label"> Name of organizing faculty / convenor / cordinator of the event: <span class = "req"> * </span> </label>
+                <label for="OrgFacName" class="form__label"> Name of Organizing Faculty / Convenor / Cordinator of the event: <span class = "req"> * </span> </label>
                 <input type="text" placeholder="Your Answer" name="OrgFacName" id="OrgFacName" class="form__input" required>
                 <label for="OrgFacName" class="form__error"> Name should only contain a-z, A-Z, . , ',' and space </label>
             </div>
 
             <div class="form__item" id="TOPIC">
-                <label for="Topic" class="form__label"> Name / Topic of event: <span class = "req"> * </span> </label>
+                <label for="Topic" class="form__label"> Name / Topic of Event: <span class = "req"> * </span> </label>
                 <input type="text" placeholder="Your Answer" name="Topic" id="Topic" class="form__input" required>
                 <label for="Topic" class="form__error"> Name should only contain a-z, A-Z, 0-9, . , ',' and space </label>
             </div>
-
+            
             <div class="form__item" id="GUEST">
-                <label for="Guest" class="form__label"> Name of guest(s) / speaker(s) (NA if not applicable): <span class = "req"> * </span> </label>
-                <input type="text" placeholder="Your Answer" name="Guest" id="Guest" class="form__input" required>
-                <label for="Guest" class="form__error"> Name should only contain a-z, A-Z, . , ',' and space </label>
+                <label for="Guest" class="form__label"> No. of Guest(s) / Speaker(s) (0 if not applicable): <span class = "req"> * </span> </label>
+                <input type="number" placeholder="Your Answer" name="Guest" id="Guest" class="form__input" required>
+                <label for="Guest" class="form__error"> Number of Guests should be +ve integer </label>
+            </div>
+            <div class="form__item" id="PARTICIPANT">
+                <label for="Participant" class="form__label"> No. of Participant(s): <span class = "req"> * </span> </label>
+                <input type="number" placeholder="Your Answer" name="Participants" id="Participants" class="form__input" required>
+                <label for="Participants" class="form__error"> Number of participants should be +ve integer </label>
             </div>
 
             <div class="form__item" id="TYPE">
@@ -84,13 +86,22 @@
                     <input type="radio" name="Type" id="T2" value="Seminar/Webinar" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
                     <label for="T2" class="form__radio__lable">Seminar / Webinar</label><br>
                 </div>
+                
                 <div>
                     <input type="radio" name="Type" id="T3" value="Lecture Series" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
                     <label for="T3" class="form__radio__lable">Lecture series</label><br>
                 </div>
+                <div>
+                    <input type="radio" name="Type" id="T4" value="Conference" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
+                    <label for="T4" class="form__radio__lable">Conference</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="Type" id="T5" value="Symposium" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
+                    <label for="T5" class="form__radio__lable">Symposium</label><br>
+                </div>
                 <div style="display: inline-block;">
-                    <input type="radio" name="Type" id="T4" value="Other" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
-                    <label for="T4" class="form__radio__lable">Other:</label>
+                    <input type="radio" name="Type" id="T6" value="Other" required class="form__radio" onclick="handleRadio(this, 'TYPE', 'OType');">
+                    <label for="T6" class="form__radio__lable">Other:</label>
                     <input type="text" class="form__radio__input" id="OType" name="OType">
                 </div>
                 <br> <label class="form__error"> Select/Enter a valid type </label>
@@ -100,18 +111,50 @@
                 <label class="form__label">Mode of the event <span class = "req"> * </span> </label>
                 <div>
                     <input type="radio" name="isOnline" id="O1" value="Offline" required class="form__radio">
-                    <label for="O1" class="form__radio__lable">Offline</label><br>
+                    <label for="O1" class="form__radio__lable">Offline</label>
                 </div>
-                <div style="display: inline-block;">
+                <div>
                     <input type="radio" name="isOnline" id="O2" value="Online" required class="form__radio">
                     <label for="O2" class="form__radio__lable">Online</label>
+                </div>
+                <div>
+                    <input type="radio" name="isOnline" id="O3" value="Hybrid" required class="form__radio">
+                    <label for="O3" class="form__radio__lable">Hybrid</label>
+                </div>
+            </div>
+
+            <div class="form__item" id="ACADEMICYEAR">
+                <label class="form__label">Academic Session <span class = "req"> * </span> </label> <br>
+                <div>
+                    <input type="radio" name="academicyear" id="A1" value="2016-2017" required class="form__radio">
+                    <label for="A1" class="form__radio__lable">2016-2017</label>
+                </div>
+                <div>
+                    <input type="radio" name="academicyear" id="A2" value="2017-2018" required class="form__radio">
+                    <label for="A2" class="form__radio__lable">2017-2018</label>
+                </div>
+                <div>
+                    <input type="radio" name="academicyear" id="A3" value="2018-2019" required class="form__radio">
+                    <label for="A3" class="form__radio__lable">2018-2019</label>
+                </div>
+                <div>
+                    <input type="radio" name="academicyear" id="A4" value="2019-2020" required class="form__radio">
+                    <label for="A4" class="form__radio__lable">2019-2020</label>
+                </div>
+                <div>
+                    <input type="radio" name="academicyear" id="A5" value="2020-2021" required class="form__radio">
+                    <label for="A5" class="form__radio__lable">2020-2021</label>
+                </div>
+                <div style="display: inline-block;">
+                    <input type="radio" name="academicyear" id="A6" value="2021-2022" required class="form__radio">
+                    <label for="A6" class="form__radio__lable">2021-2022</label>
                 </div>
             </div>
 
             <div class="form__item" id="DATETIME">
-                <label for="OrgName" class="form__label"> Date & Time of event: <span class = "req"> * </span> </label>
+                <label for="Datetime" class="form__label"> Date & Time of event: <span class = "req"> * </span> </label>
                 <input type="datetime-local" name="Datetime" id="Datetime" class="form__input" required>
-                <label for="OrgName" class="form__error"> Enter a valid date </label>
+                <label for="Datetime" class="form__error"> Enter a valid date </label>
             </div>
 
             <div class="form__item" id="DAYS">
@@ -134,28 +177,17 @@
                 <input type="checkbox" class="form__checkbox" name="DBTStar" id="DBTStar"> <label for="DBTStar" class="form__radio__lable">DBT*</label>
             </div>
 
-            <div class="form__item" id="YOUTUBE">
-                <label class="form__label">Would You like to make event live on Youtube channel of college <span class = "req"> * </span> </label>
-                <div>
-                    <input type="radio" name="Youtube" id="Y1" value="Yes" required class="form__radio">
-                    <label for="Y1" class="form__radio__lable">Yes</label><br>
-                </div>
-                <div style="display: inline-block;">
-                    <input type="radio" name="Youtube" id="Y2" value="No" required class="form__radio">
-                    <label for="Y2" class="form__radio__lable">No</label>
-                </div>
-            </div>
-
-            <div class="form__item" id="HOST">
-                <label for="Host" class="form__label"> Name & contact no. of person who will host the meeting (Separated by ,): <span class = "req"> * </span> </label>
-                <input type="text" placeholder="Your Answer" name="Host" id="Host" class="form__input" required>
-                <label for="Host" class="form__error"> Enter Valid Text </label>
-            </div>
-
             <div class="form__item" id="FILE">
                 <label for="Host" class="form__label"> Poster: <span class = "req"> * </span> </label>
                 <input type="file" class="file__in form__input" name="File" id="File" placeholder="Click here to choose file" required>
                 <label for="File" class="form__error"> Enter Valid Image(.png, .jpg, .jpeg, .bmp) or PDF file </label>
+            </div>
+
+            <div class="form__item" id="ABOUT">
+                <label for="About" class="form__label"> Write About The Event(50 words minimum)<span class = "req"> * </span> </label>
+                <h4 id="About_Limit">Words Left: 100</h4>
+                <textarea name="About" id="About" cols="30" rows="5" class="form__input" required></textarea>
+                <label for="About" class="form__error"> Word count should be greater then 50 and less then 100 </label>
             </div>
 
             <!-- Submit and Reset -->

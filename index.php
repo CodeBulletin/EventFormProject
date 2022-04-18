@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0; url = /EventDetailsForm.php" />
+<meta http-equiv="refresh" content="0; url = ./EventDetailsForm.php" />
