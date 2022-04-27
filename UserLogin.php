@@ -47,7 +47,7 @@
             <!-- Submit and Reset -->
             <div class="form__end">
                 <button type="submit" class="form__btn submit">Submit</button>
-                <button type="reset" class="form__btn reset">Clear Response</button>
+                <button type="reset" class="form__btn reset">Clear</button>
                 <span class="EndText"> <b>Deshbandhu</b> College </span>
             </div>
         </form>
