@@ -19,11 +19,15 @@
         exit();
     }
 
+    $sql = "SELECT `Poster` FROM $TableName WHERE `EventID` = '$eventID'";
+    $res = mysqli_query($conn, $sql);
+    $poster_name = $res->fetch_assoc()['Poster'];
+
+    unlink("./POSTERS/$poster_name");
     $sql = "DELETE FROM $TableName WHERE `EventID` = '$eventID'";
     mysqli_query($conn, $sql);
     
-    echo "<meta http-equiv=\"refresh\" content=\"1; url = ./AdminPanel.php\" />";
-    echo "<h4>Deleted Event with event id: $eventID Redirecting in 1 secs</h4>";
+    echo "<meta http-equiv=\"refresh\" content=\"0; url = ./AdminPanel.php\" />";
 
     exit();
 ?>

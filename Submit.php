@@ -123,9 +123,10 @@
     }
 
     $t = time();
-    $poster_name = "$t" . "_" . $poster['name'];
+    $poster_name = mysqli_real_escape_string($conn, "$t" . "_" . $poster['name']);
+    $About = mysqli_real_escape_string($conn, $About);
 
-    $sql = "INSERT INTO $TableName VALUES (DEFAULT, '$topic', '$event_type', '$academicyear', '$dt', '$days', '$is_online', '$department', '$guests', '$participants', '$faculty', '$aegis', '$poster_name', '$About')";
+    $sql = "INSERT INTO $TableName VALUES (DEFAULT, \"$topic\", \"$event_type\", \"$academicyear\", \"$dt\", \"$days\", \"$is_online\", \"$department\", \"$guests\", \"$participants\", \"$faculty\", \"$aegis\", \"$poster_name\", \"$About\")";
     mysqli_query($conn, $sql);
 
     move_uploaded_file($poster['tmp_name'], "./POSTERS/$poster_name");
